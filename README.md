@@ -59,4 +59,21 @@ exposing the risk of mismanaged file permissions, weak backup policies, and forg
 ---
 
 ## 🚩 Flag Format
+FLAG{data_should_not_be_here}
+
+---
+
+## ⚠️ Legal & Ethical Note
+
+> 🚨 **This CTF is for educational use only.**  
+> It demonstrates how ISO 27001 failures can lead to data exposure.  
+> No real data is used. No real system is compromised.
+
+---
+
+## 👤 Created By
+
+**Sadhana Prajapati**  
+🎯 CTF Designer | Cybersecurity Enthusiast  
+🔗 [GitHub Profile](https://github.com/Sadhana-Prajapati)
 
