@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ISO 27001: Shadow Backup Exposure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #00ffcc;
+      font-family: 'Share Tech Mono', monospace;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #00ff99;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+    .glitch {
+      animation: glitch 1.5s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px red; }
+      20% { text-shadow: -2px -2px blue; }
+      40% { text-shadow: 2px -2px lime; }
+      60% { text-shadow: -2px 2px orange; }
+      80% { text-shadow: 1px -1px yellow; }
+      100% { text-shadow: -1px 1px violet; }
+    }
+    .terminal-box {
+      background: #111;
+      border: 1px solid #333;
+      padding: 20px;
+      margin-top: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+    }
+    .terminal-box pre {
+      color: #00ffcc;
+      text-align: left;
+      overflow-x: auto;
+    }
+    .footer {
+      margin-top: 50px;
+      font-size: 0.8em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="glitch">💾 ISO 27001: Shadow Backup Exposure</h1>
+  <p><em>“Sometimes what you hide... ends up exposed.”</em></p>
+  <p>Uncover the forgotten backup folder. What sensitive data was unintentionally left behind?<br>Analyze the server behavior and trace the vulnerability.</p>
+
+  <div class="terminal-box">
+    <pre>
+┌─[root@ctf-player]─[~/shadow-hunt]
+└──╼ $ nmap -sV target.ctf
+21/tcp  open  ftp       vsftpd 3.0.3
+80/tcp  open  http      Apache 2.4.41
+
+┌─[root@ctf-player]─[~/shadow-hunt]
+└──╼ $ curl https://target.ctf/robots.txt
+User-agent: *
+Disallow: /backup/
+    </pre>
+  </div>
+
+  <p class="footer">💡 Tip: Don’t ask for links. Think like an auditor. Think like an attacker.</p>
+</body>
+</html>
