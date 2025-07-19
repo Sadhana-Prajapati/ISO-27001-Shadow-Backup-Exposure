@@ -1,88 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ISO 27001: Shadow Backup Exposure</title>
+  <meta charset="UTF-8" />
+  <title>Shadow Backup Exposure</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
       background: #111;
-      color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
+      color: #eee;
       text-align: center;
-      max-width: 600px;
+      padding: 50px;
     }
     h1 {
-      font-size: 2rem;
-      color: #00ffe7;
-      margin-bottom: 1rem;
+      font-size: 2.5em;
+      color: #f44336;
     }
-    .warning {
-      background: #ff0033;
-      padding: 10px;
-      border-radius: 6px;
-      font-weight: bold;
-      animation: blink 1.2s infinite;
-    }
-    @keyframes blink {
-      0% {opacity: 1;}
-      50% {opacity: 0.4;}
-      100% {opacity: 1;}
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
     .popup {
       display: none;
-      margin-top: 1.5rem;
-      padding: 20px;
-      background-color: #222;
-      border: 1px solid #444;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #00ffe7;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      padding: 30px;
+      border: 2px solid #f44336;
+      box-shadow: 0 0 15px #f44336;
+      z-index: 999;
     }
-    .download-btn {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #00ffe7;
-      color: #000;
-      border: none;
-      border-radius: 5px;
+    .popup h2 {
+      color: #f44336;
+      margin-bottom: 10px;
+    }
+    .popup a {
+      color: #4CAF50;
       font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
     }
-    .footer {
-      margin-top: 40px;
-      font-size: 0.85rem;
-      color: #888;
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0,0,0,0.8);
+      z-index: 998;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🔐 ISO 27001 – Shadow Backup Exposure</h1>
-    <div class="warning">⚠️ Confidential File Access Request Detected</div>
 
-    <div id="popup" class="popup">
-      <p>This directory contains a sensitive internal backup file.</p>
-      <p><strong>Do not share or expose without authorization.</strong></p>
-      <a href="assets/private_backup.zip" class="download-btn" download>📁 Download private_backup.zip</a>
-    </div>
+  <h1>🚨 Shadow Backup Exposure 🚨</h1>
+  <p>An ISO 27001-related CTF Challenge</p>
+  <button onclick="showPopup()">Investigate Backup</button>
 
-    <div class="footer">© 2025 Sadhana - Internal Audit Simulation</div>
+  <div class="overlay" id="overlay"></div>
+
+  <div class="popup" id="popup">
+    <h2>⚠️ Warning</h2>
+    <p>This contains a <strong>confidential backup</strong> file.<br>Download at your own risk.</p>
+    <p><a href="assets/private/private_backup.zip" download>📦 Download Backup</a></p>
   </div>
 
   <script>
-    // Show popup quickly after 2 seconds
-    setTimeout(() => {
+    function showPopup() {
       document.getElementById('popup').style.display = 'block';
-    }, 2000);
+      document.getElementById('overlay').style.display = 'block';
+    }
   </script>
+
 </body>
 </html>
