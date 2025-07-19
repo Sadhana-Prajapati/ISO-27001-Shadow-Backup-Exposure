@@ -12,7 +12,7 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Inter', sans-serif;
-      color: #fff;
+      color: white;
       background-color: black;
     }
 
@@ -31,124 +31,114 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      padding: 40px;
       background-color: rgba(0, 0, 0, 0.7);
-      border-radius: 16px;
-      box-shadow: 0 0 60px #00ffcc44;
+      padding: 40px;
+      border-radius: 20px;
       max-width: 600px;
       margin: auto;
       text-align: center;
+      box-shadow: 0 0 40px rgba(0,255,0,0.3);
     }
 
     h1 {
       font-size: 2.2rem;
       margin-bottom: 10px;
-      color: #00ffd5;
-      text-shadow: 0 0 10px #00ffd5;
     }
 
     p {
       font-size: 1.1rem;
-      margin-bottom: 25px;
-      color: #ddd;
-    }
-
-    .glitch-text::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 2px;
-      text-shadow: -2px 0 red;
-      top: 0;
-      color: #00ffe1;
-      background: transparent;
-      overflow: hidden;
-      animation: glitch 2s infinite;
-    }
-
-    @keyframes glitch {
-      0% { clip: rect(0, 900px, 0, 0); }
-      5% { clip: rect(0, 900px, 90px, 0); }
-      10% { clip: rect(0, 900px, 0, 0); }
-      15% { clip: rect(0, 900px, 50px, 0); }
-      20% { clip: rect(0, 900px, 0, 0); }
-      100% { clip: rect(0, 900px, 0, 0); }
+      margin-bottom: 30px;
+      color: #ccc;
     }
 
     .button {
       padding: 14px 32px;
       font-size: 1rem;
       font-weight: bold;
-      background: linear-gradient(90deg, #00ffe1, #00bfff);
+      background: #00d4ff;
       border: none;
       border-radius: 8px;
       color: #000;
       text-decoration: none;
       transition: 0.3s;
-      box-shadow: 0 0 12px #00ffc3;
     }
 
     .button:hover {
-      background: linear-gradient(90deg, #00c0a1, #009ab5);
-      box-shadow: 0 0 18px #00ffc3;
+      background: #00b0d1;
     }
 
-    .button::after {
-      content: " [Contains confidential files]";
-      display: block;
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-top: 6px;
+    /* Modal Popup */
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      z-index: 9999;
+      background: rgba(0,0,0,0.95);
+      border: 2px solid #00ffcc;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 0 20px #00ffcc;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease-in-out;
     }
 
-    .hint {
-      font-size: 0.9rem;
-      color: #888;
-      margin-top: 20px;
+    .modal.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 1.5rem; }
-      .button { padding: 10px 24px; font-size: 0.9rem; }
+    .modal h2 {
+      color: #00ffcc;
+      margin-bottom: 10px;
+    }
+
+    .modal p {
+      color: #ddd;
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
-
   <!-- Matrix Background -->
   <canvas id="matrix"></canvas>
 
-  <!-- Content -->
+  <!-- Popup Modal -->
+  <div id="confidentialModal" class="modal">
+    <h2>⚠️ Confidential File Notice</h2>
+    <p>This file contains confidential information. Handle with care and follow ISO 27001 best practices.</p>
+  </div>
+
+  <!-- Main Content -->
   <div class="container">
     <h1>🔐 ISO 27001: Shadow Backup Exposure</h1>
-    <p class="glitch-text" data-text="A backup hidden from policies. Waiting to be discovered.">
-      A backup hidden from policies. Waiting to be discovered.
-    </p>
+    <p>A forgotten backup. A careless misconfiguration.<br>Discover what should've stayed hidden.</p>
     <a href=".assets/private_backup.zip" download class="button">
-      🔓 Download Shadow Backup
+      🔐 Download Backup File
     </a>
-    <div class="hint">
-      (Psst... insiders say the backup isn't encrypted)
-    </div>
   </div>
 
   <script>
+    // Matrix Background Animation
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
 
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
-    const binary = "01";
-    const letters = binary.split("");
+    const letters = "01".split("");
     const fontSize = 14;
     const columns = canvas.width / fontSize;
-
     const drops = Array.from({ length: columns }).fill(1);
 
     function drawMatrix() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.fillStyle = "#00ff00";
       ctx.font = fontSize + "px monospace";
 
@@ -164,6 +154,13 @@
     }
 
     setInterval(drawMatrix, 50);
+
+    // Show popup modal quickly
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById("confidentialModal").classList.add("show");
+      }, 100); // Fast popup (100ms)
+    };
   </script>
 </body>
 </html>
