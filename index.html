@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>SecureCorp Intranet - ISO 27001 CTF</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SecureCorp Intranet - ISO 27001</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #111; color: #eee; padding: 20px; }
+    h1 { color: #00ff88; }
+    a { color: #4ecdc4; text-decoration: none; display: block; margin: 10px 0; }
+    .warning { color: #ff5555; font-weight: bold; }
+    footer { margin-top: 40px; font-size: 0.9em; color: #aaa; }
+  </style>
 </head>
 <body>
-  <h1>SecureCorp Intranet</h1>
-  <p><strong>Employee Access Only — ISO 27001 Compliant</strong></p>
+  <h1>🔒 SecureCorp Intranet</h1>
+  <p>Employee Access Only — ISO 27001 Compliant</p>
 
   <h2>📁 Departmental Archives</h2>
-  <ul>
-    <li>Finance Docs (Restricted)</li>
-    <li>IT Reports (Internal Use)</li>
-    <li>HR Policies (Confidential)</li>
-    <li><a href="files/private_backup.zip">📦 Internal Backup (Do Not Share)</a></li>
-  </ul>
+  <a href="#">📄 Finance Docs (Restricted)</a>
+  <a href="#">🖥 IT Reports (Internal Use)</a>
+  <a href="#">📑 HR Policies (Confidential)</a>
 
-  <p>🚨 <strong>ISO Audit Status:</strong> FAILED</p>
+  <h2>📦 Internal Backup (Do Not Share)</h2>
+  <a href="./backup/.backup.zip">[Download Backup.zip]</a> <!-- Hidden Flag File -->
+
+  <p class="warning">🚨 ISO Audit Status: FAILED</p>
   <p>Last audit failed due to unresolved backup exposure. Review pending.</p>
 
   <footer>
-    <p>© 2025 SecureCorp | Internal Use Only</p>
+    © 2025 SecureCorp | Internal Use Only
   </footer>
 </body>
 </html>
