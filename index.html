@@ -3,98 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shadow Backup Exposure - ISO 27001 CTF</title>
+  <title>🔐 ISO 27001: The Forgotten Folder</title>
   <style>
     body {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      font-family: 'Courier New', Courier, monospace;
-      margin: 0;
-      padding: 2rem;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 40px;
+      background-color: #f7f9fc;
+      color: #222;
+      line-height: 1.6;
     }
     h1, h2, h3 {
-      color: #58a6ff;
+      color: #2c3e50;
     }
-    .terminal {
-      background-color: #161b22;
-      padding: 1rem;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
+    .flag {
+      background: #eee;
+      padding: 10px;
+      border-left: 5px solid #3498db;
+      font-family: monospace;
     }
-    .terminal-command {
-      color: #39ff14;
-      display: block;
-    }
-    details {
-      margin: 1rem 0;
-    }
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-    }
-    a {
-      color: #8ab4f8;
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>💀 Shadow Backup Exposure</h1>
-  <h3>ISO 27001-Based CTF Challenge</h3>
+  <h1>🔐 ISO 27001: The Forgotten Folder</h1>
+  <p><em>A backup untouched... A config exposed... What happens when security controls are ignored?</em></p>
 
-  <p>
-    In a small organization, a misconfigured backup server was exposed on the public internet.
-    Your task is to identify the vulnerability, extract the sensitive data, and understand how it relates to ISO 27001 controls.
-  </p>
+  <h2>🧩 Challenge Story</h2>
+  <p>Welcome to a world where audits failed and oversight ruled.</p>
+  <p>An internal team once stored critical files in a hidden backup directory — no encryption, no access control, no logs... just carelessness.</p>
+  <p>This CTF simulates a real-world ISO 27001 security lapse.</p>
 
-  <h2>🧩 Challenge Objectives</h2>
+  <h2>💡 Your Mission</h2>
   <ul>
-    <li>Perform recon on the target service.</li>
-    <li>Identify misconfigured services (FTP, HTTP).</li>
-    <li>Access sensitive backup files or credentials.</li>
-    <li>Find and submit the flag.</li>
+    <li>🗂 Infiltrate the exposed backup directory</li>
+    <li>🔍 Investigate the files</li>
+    <li>📊 Map findings to ISO 27001 controls</li>
+    <li>🚩 Retrieve the flag</li>
   </ul>
 
-  <h2>📜 ISO 27001 Mapping</h2>
-  <p>This CTF challenge maps to the following ISO 27001:2022 controls:</p>
-  <ul>
-    <li><b>A.9.2.6</b> – Secure log-on procedures</li>
-    <li><b>A.12.1.1</b> – Documented operating procedures</li>
-    <li><b>A.13.1.1</b> – Network controls</li>
-    <li><b>A.14.2.7</b> – Outsourced development and data handling</li>
-  </ul>
+  <h2>📘 ISO 27001 Controls Simulated</h2>
+  <table border="1" cellpadding="5">
+    <tr><th>Clause</th><th>Control Area</th><th>Description</th></tr>
+    <tr><td>A.8</td><td>Asset Management</td><td>Untracked backup files</td></tr>
+    <tr><td>A.9</td><td>Access Control</td><td>Weak or no permissions</td></tr>
+    <tr><td>A.12</td><td>Operations Security</td><td>Misconfigured file storage</td></tr>
+    <tr><td>A.13</td><td>Communications Security</td><td>Sensitive files exposed</td></tr>
+  </table>
 
   <h2>🚩 Flag Format</h2>
-  <p>
-    Submit your flag in this format: <code>CTF{example_flag_here}</code>
-  </p>
+  <div class="flag">FLAG{data_should_not_be_here}</div>
 
-  <details>
-    <summary>🧪 Initial Recon (Hint)</summary>
-    <div class="terminal">
-      <span class="terminal-command">┌─[root@ctf-player]─[~/shadow-hunt]</span><br>
-      <span class="terminal-command">└──╼ $</span> nmap -sV target.ctf<br><br>
-      21/tcp  open  ftp       vsftpd 3.0.3<br>
-      80/tcp  open  http      Apache 2.4.41
-    </div>
-  </details>
+  <h2>⚠️ Legal & Ethical Note</h2>
+  <p>This CTF is for educational use only. No real systems were harmed.</p>
 
-  <details>
-    <summary>🧵 Extra Hint (Click to Reveal)</summary>
-    <p>Try browsing the FTP service anonymously. Look for backup or config files. 🧐</p>
-  </details>
-
-  <h2>📥 How to Play</h2>
-  <ol>
-    <li>Clone the repo or view challenge files on GitHub.</li>
-    <li>Use tools like <code>nmap</code>, <code>ftp</code>, <code>wget</code>, and <code>strings</code> to explore.</li>
-    <li>Find the exposed backup or credential file and extract the flag.</li>
-    <li>Submit the flag as per format.</li>
-  </ol>
-
-  <h2>🔗 GitHub Repo</h2>
-  <p>
-    View challenge source: <a href="https://github.com/Sadhana-Prajapati/ISO-27001-Shadow-Backup-Exposure" target="_blank">GitHub Repository</a>
-  </p>
+  <footer>
+    Created by <strong>Sadhana Prajapati</strong> | Cybersecurity Enthusiast  
+    <br>
+    GitHub: <a href="https://github.com/Sadhana-Prajapati">Sadhana-Prajapati</a>
+  </footer>
 </body>
 </html>
