@@ -2,89 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ISO 27001: Shadow Backup Exposure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at top left, #1e3c72, #2a5298);
-      color: #fff;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+      color: white;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      height: 100vh;
       text-align: center;
-      overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1632834594028-64b7ce229326?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(4px);
     }
-
+    .container {
+      background-color: rgba(0, 0, 0, 0.65);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      max-width: 600px;
+    }
     h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      margin-bottom: 10px;
     }
-
     p {
-      max-width: 700px;
       font-size: 1.1rem;
-      opacity: 0.85;
-      margin-bottom: 2rem;
+      margin-bottom: 30px;
+      color: #ccc;
     }
-
-    .download-btn {
-      padding: 0.8rem 1.8rem;
-      background-color: #ffce00;
-      color: #000;
-      border: none;
-      border-radius: 30px;
-      font-weight: bold;
+    .button {
+      padding: 14px 32px;
       font-size: 1rem;
+      font-weight: bold;
+      background: #00d4ff;
+      border: none;
+      border-radius: 8px;
+      color: #000;
       text-decoration: none;
-      transition: background 0.3s ease;
+      transition: 0.3s;
     }
-
-    .download-btn:hover {
-      background-color: #e6b800;
-    }
-
-    .blob {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: #ffffff22;
-      border-radius: 50%;
-      filter: blur(100px);
-      animation: blobAnim 20s infinite;
-      z-index: 0;
-    }
-
-    .blob1 { top: 10%; left: 15%; }
-    .blob2 { bottom: 15%; right: 20%; animation-delay: 5s; }
-
-    @keyframes blobAnim {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(20px, -30px) scale(1.2); }
-    }
-
-    .content {
-      z-index: 2;
-      position: relative;
-      padding: 2rem;
+    .button:hover {
+      background: #00b0d1;
     }
   </style>
 </head>
 <body>
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-
-  <div class="content">
+  <div class="container">
     <h1>🔐 ISO 27001: Shadow Backup Exposure</h1>
-    <p>A forgotten backup. A careless misconfiguration.<br>
-       Discover what should've stayed hidden.</p>
-
-    <a class="download-btn" href="./backup/private_backup.zip" download>
-      📦 Download Backup
-    </a>
+    <p>A forgotten backup. A careless misconfiguration.<br>Discover what should've stayed hidden.</p>
+    <a href="private_backup.zip" class="button" download>📦 Download Backup</a>
   </div>
 </body>
 </html>
