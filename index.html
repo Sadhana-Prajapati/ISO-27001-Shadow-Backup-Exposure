@@ -2,43 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ISO 27001: Shadow Backup Exposure</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      background-size: 400% 400%;
-      animation: gradientBG 20s ease infinite;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       color: white;
-      padding: 20px;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
 
-    .glass-container {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.65);
       padding: 40px;
+      border-radius: 20px;
       max-width: 600px;
-      width: 100%;
+      margin: auto;
       text-align: center;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-      border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
     h1 {
@@ -48,47 +45,73 @@
 
     p {
       font-size: 1.1rem;
-      color: #ddd;
       margin-bottom: 30px;
+      color: #ccc;
     }
 
     .button {
-      display: inline-block;
       padding: 14px 32px;
       font-size: 1rem;
-      font-weight: 600;
-      color: #fff;
-      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      font-weight: bold;
+      background: #00d4ff;
       border: none;
       border-radius: 8px;
+      color: #000;
       text-decoration: none;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
 
     .button:hover {
-      background: linear-gradient(135deg, #00b4d8, #0077b6);
-    }
-
-    @media (max-width: 600px) {
-      .glass-container {
-        padding: 24px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
+      background: #00b0d1;
     }
   </style>
 </head>
 <body>
-  <div class="glass-container">
+  <!-- Matrix Canvas Background -->
+  <canvas id="matrix"></canvas>
+
+  <!-- Content Box -->
+  <div class="container">
     <h1>🔐 ISO 27001: Shadow Backup Exposure</h1>
     <p>A forgotten backup. A careless misconfiguration.<br>Discover what should've stayed hidden.</p>
     <a href="private_backup.zip" class="button" download>📦 Download Backup</a>
   </div>
+
+  <script>
+    // Matrix Background Animation
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const binary = "01";
+    const letters = binary.split("");
+
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+
+    const drops = Array.from({ length: columns }).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#00ff00"; // Green
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 50);
+  </script>
 </body>
 </html>
