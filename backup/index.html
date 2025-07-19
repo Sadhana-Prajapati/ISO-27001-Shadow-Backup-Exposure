@@ -3,50 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ISO 27001: Shadow Backup Exposure</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Shadow Backup Interface</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #1f2937, #111827);
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background-color: #1f2937;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      max-width: 600px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #9ca3af;
+      margin-bottom: 30px;
+    }
+    .btn {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: #059669;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  </style>
 </head>
 <body>
-
-  <div class="background-animation"></div>
-
-  <div class="glass-container">
-    <h1>🔐 ISO 27001: The Forgotten Folder</h1>
-    <p>A backup untouched… A config exposed…</p>
-
-    <h2>🧩 Challenge Story</h2>
-    <p>
-      Welcome to a world where audits failed, and oversight ruled.<br>
-      An internal team once stored critical files in a hidden backup directory —<br>
-      nothing was encrypted, no access control, no logs… just carelessness.<br><br>
-      Now, it’s your job to uncover what they tried to forget.
-    </p>
-
-    <h2>💡 Your Mission</h2>
-    <ul>
-      <li>🗂 Infiltrate the exposed <code>/backup</code> directory</li>
-      <li>🔍 Investigate the files with an auditor’s eye</li>
-      <li>📊 Map your findings to ISO 27001 controls</li>
-      <li>🚩 Retrieve the flag hidden in plain sight</li>
-    </ul>
-
-    <h2>📘 Simulated ISO 27001 Controls</h2>
-    <ul>
-      <li><b>A.8 Asset Management</b>: Untracked backup files</li>
-      <li><b>A.9 Access Control</b>: Weak or no permission restrictions</li>
-      <li><b>A.12 Operations Security</b>: Misconfigured file storage</li>
-      <li><b>A.13 Communications Security</b>: Sensitive internal files exposed</li>
-    </ul>
-
-    <h2>🚩 Flag Format</h2>
-    <code>FLAG{data_should_not_be_here}</code>
-
-    <h2>📁 Download Backup</h2>
-    <a class="btn" href="backup/private_backup.zip" download>Download private_backup.zip</a>
-
-    <footer>
-      <p>👤 Created by Sadhana Prajapati | <a href="https://github.com/Sadhana-Prajapati" target="_blank">GitHub</a></p>
-    </footer>
+  <div class="container">
+    <h1>Internal Backup Interface</h1>
+    <p>Use this portal to retrieve archived backup data.</p>
+    <a class="btn" href="./backup/private_backup.zip" download>Download Backup</a>
+    <div class="footer">
+      &copy; Shadow IT Storage • Confidential Access Only
+    </div>
   </div>
 </body>
 </html>
