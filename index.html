@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ISO 27001 CTF – Shadow Backup Exposure</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -10,7 +10,7 @@
       --primary: #00ffc3;
       --accent: #0ff;
       --error: #ff4f4f;
-      --bg-dark: #080f13;
+      --bg-dark: #0b0f10;
       --text-light: #e0fdfb;
     }
 
@@ -24,7 +24,7 @@
       font-family: 'JetBrains Mono', monospace;
       background: var(--bg-dark);
       color: var(--text-light);
-      min-height: 100%;
+      height: 100%;
       overflow-x: hidden;
     }
 
@@ -32,34 +32,34 @@
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 0;
-      opacity: 0.08;
-      pointer-events: none;
+      opacity: 0.12;
     }
 
     .container {
       position: relative;
       z-index: 1;
-      max-width: 900px;
+      max-width: 960px;
       margin: auto;
       padding: 60px 20px;
+      backdrop-filter: blur(5px);
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       color: var(--primary);
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .section {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.05);
       padding: 30px;
-      border-radius: 12px;
-      margin: 20px 0;
-      box-shadow: 0 0 20px rgba(0,255,200,0.05);
+      border-radius: 16px;
+      margin: 30px 0;
+      box-shadow: 0 0 25px rgba(0,255,200,0.05);
     }
 
     .section h2 {
@@ -70,59 +70,57 @@
     p, ul {
       font-size: 1rem;
       line-height: 1.7;
-      color: #b6fff5;
+      color: #c9fff9;
     }
 
     ul {
       padding-left: 20px;
-      list-style: disc;
     }
 
     .download-btn {
       display: block;
       margin: 30px auto;
-      padding: 14px 30px;
+      padding: 14px 32px;
       font-size: 1rem;
-      background: var(--primary);
-      color: #000;
       font-weight: bold;
+      color: #000;
+      background: linear-gradient(90deg, #00ffc3, #00e0ff);
+      border: none;
       border-radius: 8px;
       text-decoration: none;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,255,200,0.3);
+      box-shadow: 0 0 15px rgba(0,255,204,0.3);
       transition: all 0.3s ease;
     }
 
     .download-btn:hover {
-      background: #00ddb2;
-      box-shadow: 0 0 25px rgba(0,255,200,0.5);
+      background: linear-gradient(90deg, #00e6b8, #00c4e0);
+      box-shadow: 0 0 25px rgba(0,255,204,0.6);
     }
 
     .flag-section {
-      background: rgba(255,255,255,0.04);
+      background: rgba(0,0,0,0.6);
       padding: 30px;
-      border-radius: 10px;
-      margin-top: 50px;
-      box-shadow: 0 0 25px rgba(0,255,200,0.05);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,255,191,0.15);
+      text-align: center;
     }
 
     .flag-section h2 {
-      text-align: center;
       color: var(--accent);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .flag-input {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 16px;
+      align-items: center;
     }
 
     .flag-input input {
       padding: 12px;
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       font-size: 1rem;
       background: #111;
       color: var(--accent);
@@ -154,29 +152,23 @@
     }
 
     .result {
-      font-weight: bold;
       margin-top: 10px;
+      font-weight: bold;
     }
 
     footer {
       text-align: center;
-      margin: 50px auto 20px;
+      margin-top: 50px;
+      color: #666;
       font-size: 0.9rem;
-      color: #aaa;
     }
 
-    @media (max-width: 600px) {
+    @media screen and (max-width: 600px) {
       h1 {
         font-size: 2rem;
       }
-
       .flag-input input {
         width: 90%;
-      }
-
-      .download-btn {
-        width: 100%;
-        padding: 14px 0;
       }
     }
   </style>
@@ -186,24 +178,26 @@
 <canvas id="matrix"></canvas>
 
 <div class="container">
-  <h1>🔐 ISO 27001 CTF: Shadow Backup Exposure</h1>
+  <h1>🛡️ ISO 27001 CTF: Shadow Backup Exposure</h1>
 
   <div class="section">
-    <p>Welcome to a world where audits failed, and oversight ruled. An internal team once stored critical files in a hidden backup directory — no encryption, no access control, no logs. Just carelessness.</p>
-    <p>Your mission is to uncover what they tried to forget.</p>
+    <p>Welcome to a world where audits failed, and oversight ruled. An internal team once stored critical files in a hidden backup directory — no encryption, no access control, no logs... just carelessness.</p>
+    <p><strong>Your mission:</strong> Uncover what they tried to forget.</p>
   </div>
 
   <div class="section">
-    <h2>💡 Your Objectives</h2>
+    <h2>💡 Objectives</h2>
     <ul>
       <li>🗂 Infiltrate the exposed backup directory</li>
       <li>🔍 Investigate the files with an auditor’s eye</li>
-      <li>📊 Map your findings to ISO 27001 controls</li>
+      <li>📊 Map findings to ISO 27001 controls</li>
       <li>🚩 Retrieve the flag hidden in plain sight</li>
     </ul>
   </div>
 
-  <a href="downloads/private_backup.zip" class="download-btn" download>📥 Download Backup File</a>
+  <a href="downloads/private_backup.zip" class="download-btn" download>
+    📥 Download Backup File
+  </a>
 
   <div class="flag-section">
     <h2>🏁 Submit Your Flag</h2>
@@ -216,30 +210,32 @@
 </div>
 
 <footer>
-  © 2025 ISO 27001 CTF · Designed by Sadhana Prajapati
+  &copy; 2025 ISO 27001 CTF · Built by Sadhana Prajapati
 </footer>
 
 <script>
-  // Matrix animation
+  // Matrix Animation
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const chars = "ISO27001LEAKEXPOSEDFLAG";
-  const fontSize = 14;
+  const chars = "ISO27001LEAK";
+  const fontSize = 16;
   const columns = Math.floor(canvas.width / fontSize);
   const drops = Array(columns).fill(1);
 
   function drawMatrix() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     ctx.fillStyle = "#00ffc3";
     ctx.font = fontSize + "px monospace";
 
     for (let i = 0; i < drops.length; i++) {
       const text = chars[Math.floor(Math.random() * chars.length)];
       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
       if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
         drops[i] = 0;
       }
@@ -247,14 +243,14 @@
     }
   }
 
-  setInterval(drawMatrix, 40);
+  setInterval(drawMatrix, 45);
 
   window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
 
-  // Flag submission logic
+  // Flag Submission
   function submitFlag() {
     const correctFlag = "ISO27001{L34ky_4ss3ts_Expos3d}";
     const input = document.getElementById("flag").value.trim();
