@@ -35,7 +35,7 @@
       z-index: 0;
       width: 100vw;
       height: 100vh;
-      opacity: 0.1;
+      opacity: 0.12;
       pointer-events: none;
     }
 
@@ -77,6 +77,12 @@
       padding-left: 20px;
     }
 
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 40px 0;
+    }
+
     .download-btn {
       display: inline-block;
       padding: 12px 28px;
@@ -89,18 +95,14 @@
       text-decoration: none;
       box-shadow: 0 0 15px rgba(0,255,204,0.3);
       transition: all 0.3s ease;
-      margin: 0 auto;
+      max-width: 240px;
+      width: 100%;
+      text-align: center;
     }
 
     .download-btn:hover {
       background: linear-gradient(90deg, #00e6b8, #00c4e0);
       box-shadow: 0 0 25px rgba(0,255,204,0.6);
-    }
-
-    .button-wrapper {
-      display: flex;
-      justify-content: center;
-      margin: 40px 0;
     }
 
     .flag-section {
@@ -175,7 +177,7 @@
       }
 
       .download-btn {
-        width: 100%;
+        max-width: 90%;
       }
 
       .flag-input input {
@@ -227,26 +229,38 @@
 <script>
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
 
-  const chars = "ISO27001LEAKFLAG";
-  const fontSize = 16;
-  const columns = Math.floor(canvas.width / fontSize);
+  const chars = "ISO27001LEAKEXPOSEDFLAG";
+  const baseFontSize = 14;
+  const columns = Math.floor(width / baseFontSize);
   const drops = Array(columns).fill(1);
 
   function drawMatrix() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#00ffc3";
-    ctx.font = fontSize + "px monospace";
+    ctx.fillRect(0, 0, width, height);
 
     for (let i = 0; i < drops.length; i++) {
-      const text = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      const columnCenter = width / 2;
+      const columnPos = i * baseFontSize;
+      const distanceFromCenter = Math.abs(columnPos - columnCenter);
+      let fontSize = baseFontSize;
 
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      if (distanceFromCenter < width / 6) {
+        fontSize = baseFontSize * 1.2;
+      } else if (distanceFromCenter > width / 2.5) {
+        fontSize = baseFontSize * 1.6;
+      } else {
+        fontSize = baseFontSize;
+      }
+
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      ctx.font = `${fontSize}px monospace`;
+      ctx.fillStyle = "#00ffc3";
+      ctx.fillText(text, columnPos, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > height && Math.random() > 0.975) {
         drops[i] = 0;
       }
 
@@ -254,11 +268,11 @@
     }
   }
 
-  setInterval(drawMatrix, 40);
+  setInterval(drawMatrix, 50);
 
   window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
   });
 
   function submitFlag() {
