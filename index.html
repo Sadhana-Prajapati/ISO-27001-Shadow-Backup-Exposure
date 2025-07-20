@@ -10,8 +10,9 @@
       margin: 0;
       padding: 0;
       font-family: 'JetBrains Mono', monospace;
-      background: #0b0c10;
-      color: #bdfedc;
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1e);
+      color: #e0ffe0;
+      min-height: 100%;
       overflow-x: hidden;
     }
 
@@ -19,27 +20,30 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 0;
       width: 100vw;
       height: 100vh;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .container {
       position: relative;
       z-index: 1;
-      max-width: 850px;
+      max-width: 960px;
       margin: 80px auto;
-      background: rgba(15, 20, 20, 0.85);
       padding: 50px 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(0, 255, 100, 0.15);
+      background: rgba(20, 20, 30, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+      backdrop-filter: blur(8px);
     }
 
     h1 {
       text-align: center;
-      color: #00ff66;
-      font-size: 2.4rem;
-      margin-bottom: 20px;
+      color: #00ffbf;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      text-shadow: 0 0 8px #00ffbf44;
     }
 
     .section {
@@ -47,56 +51,54 @@
     }
 
     .section h2 {
-      color: #5affb5;
-      margin-bottom: 10px;
+      color: #40ffd0;
     }
 
     .section p, .section ul {
-      color: #c3f3c1;
-      line-height: 1.6;
+      color: #ccffe4;
+      line-height: 1.7;
     }
 
-    .section ul {
+    ul {
       padding-left: 20px;
     }
 
-    .download-btn {
+    a.download-btn {
       display: inline-block;
       margin: 30px auto;
-      padding: 14px 28px;
-      background: #00ff66;
+      padding: 14px 32px;
+      background: #00ffc3;
       color: #000;
       font-weight: bold;
-      border-radius: 8px;
       text-decoration: none;
-      box-shadow: 0 0 15px rgba(0,255,102,0.4);
+      border-radius: 8px;
       transition: all 0.3s ease;
+      box-shadow: 0 0 12px rgba(0, 255, 200, 0.3);
     }
 
-    .download-btn:hover {
-      background: #00e65c;
-      box-shadow: 0 0 25px rgba(0,255,102,0.6);
-      cursor: pointer;
+    a.download-btn:hover {
+      background: #00ddb0;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
     }
 
     .flag-section {
-      background: #0d1a12;
-      border-left: 4px solid #00ff66;
+      background: rgba(0, 0, 0, 0.65);
       padding: 30px;
+      border-left: 5px solid #00ffcc;
       border-radius: 10px;
       margin-top: 40px;
     }
 
     .flag-section h2 {
       text-align: center;
-      color: #00ff88;
+      color: #00ffd9;
     }
 
     .flag-input {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
       margin-top: 20px;
     }
 
@@ -104,34 +106,34 @@
       width: 100%;
       max-width: 500px;
       padding: 14px;
-      background: #0a0f0a;
-      border: 1px solid #00ff66;
-      border-radius: 6px;
-      color: #aaffaa;
       font-size: 1rem;
-      transition: 0.3s;
+      border-radius: 6px;
+      border: 1px solid #00ffbf;
+      background: #111;
+      color: #aff;
+      transition: all 0.3s ease;
     }
 
     .flag-input input:focus {
       outline: none;
-      box-shadow: 0 0 10px #00ff66;
+      box-shadow: 0 0 8px #00ffcc;
     }
 
     .flag-input button {
       padding: 12px 24px;
-      background: #00ff66;
-      border: none;
-      color: #000;
+      font-size: 1rem;
       font-weight: bold;
+      background: #00ffc3;
+      color: #000;
+      border: none;
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 0 12px rgba(0,255,102,0.3);
     }
 
     .flag-input button:hover {
-      background: #00e65c;
-      box-shadow: 0 0 20px rgba(0,255,102,0.6);
+      background: #00e6b8;
+      box-shadow: 0 0 20px #00ffccaa;
     }
 
     .result {
@@ -139,52 +141,11 @@
       font-weight: bold;
     }
 
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.9);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: #111;
-      color: #00ff99;
-      padding: 40px 30px;
-      border-radius: 10px;
-      text-align: center;
-      border: 2px solid #00ff66;
-    }
-
-    .modal-content button {
-      margin-top: 20px;
-      background: #00ff66;
-      color: #000;
-      border: none;
-      padding: 10px 20px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
     footer {
       text-align: center;
       font-size: 0.85rem;
-      color: #666;
-      margin: 60px auto 20px;
-    }
-
-    @media screen and (max-width: 600px) {
-      .container {
-        padding: 30px 20px;
-      }
-      h1 {
-        font-size: 2rem;
-      }
+      color: #777;
+      margin: 60px auto 30px;
     }
   </style>
 </head>
@@ -193,7 +154,7 @@
 <canvas id="matrix"></canvas>
 
 <div class="container">
-  <h1>🕵️ ISO 27001 CTF: Shadow Backup Exposure</h1>
+  <h1>🕵️‍♀️ ISO 27001 CTF: Shadow Backup Exposure</h1>
 
   <div class="section">
     <p>Welcome to a world where audits failed, and oversight ruled. An internal team once stored critical files in a hidden backup directory — nothing was encrypted, no access control, no logs... just carelessness.</p>
@@ -211,13 +172,13 @@
   </div>
 
   <div style="text-align:center;">
-    <a href="downloads/private_backup.zip" class="download-btn" download>📦 Download Backup File</a>
+    <a href="downloads/private_backup.zip" download class="download-btn">📁 Download Backup File</a>
   </div>
 
   <div class="flag-section">
     <h2>🏁 Submit Your Flag</h2>
     <div class="flag-input">
-      <input type="text" id="flag" placeholder='e.g. ISO27001{L34ky_4ss3ts_Expos3d}' />
+      <input type="text" id="flag" placeholder="e.g. ISO27001{...}" />
       <button onclick="submitFlag()">Submit Flag</button>
       <div class="result" id="result"></div>
     </div>
@@ -225,11 +186,11 @@
 </div>
 
 <footer>
-  ISO 27001 CTF · Created by Sadhana Prajapati
+  © 2025 ISO 27001 CTF · Designed by Sadhana Prajapati
 </footer>
 
-<!-- ✅ Matrix Effect -->
 <script>
+  // Matrix background
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
@@ -240,13 +201,13 @@
   const columns = Math.floor(canvas.width / fontSize);
   const drops = Array(columns).fill(1);
 
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.07)";
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#00ff66";
+    ctx.fillStyle = "#00ffcc";
     ctx.font = fontSize + "px monospace";
 
-    for (let i = 0; i < columns; i++) {
+    for (let i = 0; i < drops.length; i++) {
       const char = chars[Math.floor(Math.random() * chars.length)];
       ctx.fillText(char, i * fontSize, drops[i] * fontSize);
       if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
@@ -256,48 +217,32 @@
     }
   }
 
-  setInterval(draw, 35);
-
+  setInterval(drawMatrix, 33);
   window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
-</script>
 
-<!-- ✅ Flag Checker -->
-<script>
+  // Flag check logic
   function submitFlag() {
     const input = document.getElementById("flag").value.trim();
+    const result = document.getElementById("result");
     const correct = "ISO27001{L34ky_4ss3ts_Expos3d}";
     const match = input.match(/ISO27001\{[^}]+\}/);
-    const flag = match ? match[0].replace(/["']/g, '') : "";
-    const result = document.getElementById("result");
+    const flag = match ? match[0] : "";
 
     if (!input) {
-      result.textContent = "⚠️ Enter a flag to continue.";
+      result.textContent = "⚠️ Please enter a flag.";
       result.style.color = "#ffaa00";
     } else if (flag === correct) {
-      result.textContent = "";
-      document.getElementById("successModal").style.display = "flex";
+      result.textContent = "✅ Correct! You've uncovered the breach.";
+      result.style.color = "#00ff99";
     } else {
-      result.textContent = "❌ Incorrect. Keep digging.";
-      result.style.color = "#ff4444";
+      result.textContent = "❌ Incorrect flag. Try again.";
+      result.style.color = "#ff4f4f";
     }
   }
-
-  function closeModal() {
-    document.getElementById("successModal").style.display = "none";
-  }
 </script>
-
-<!-- ✅ Modal -->
-<div class="modal" id="successModal">
-  <div class="modal-content">
-    ✅ Correct! You've uncovered the breach.<br><br>
-    🎉 Well done, auditor.<br><br>
-    <button onclick="closeModal()">Close</button>
-  </div>
-</div>
 
 </body>
 </html>
