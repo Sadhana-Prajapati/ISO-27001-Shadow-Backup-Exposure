@@ -92,13 +92,14 @@
 
     .flag-section h2 {
       color: #00ffe1;
+      text-align: center; /* ✅ Heading centered */
       margin-bottom: 20px;
     }
 
     .flag-input {
       display: flex;
       flex-direction: column;
-      align-items: center; /* ✅ Center alignment */
+      align-items: center;
       gap: 16px;
     }
 
@@ -130,7 +131,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: 0.3s;
-      width: auto; /* Natural width */
+      width: auto;
     }
 
     .flag-input button:hover {
@@ -241,9 +242,9 @@
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 
-  const binary = "01ACDF3E";
+  const binary = "01ACEF3D";
   const letters = binary.split("");
-  const fontSize = 14;
+  const fontSize = 16;
   const columns = canvas.width / fontSize;
   const drops = Array.from({ length: columns }).fill(1);
 
