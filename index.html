@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ISO 27001: Shadow Backup Exposure</title>
+  <meta name="description" content="A cybersecurity CTF challenge revealing the dangers of exposed backups.">
+  <meta property="og:title" content="Shadow Backup Exposure CTF Challenge">
+  <meta property="og:description" content="Discover what should've stayed hidden. ISO 27001-inspired cybersecurity challenge.">
+  <meta property="og:image" content="https://sadhana-prajapati.github.io/ISO-27001-Shadow-Backup-Exposure/assets/preview.png">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -38,11 +44,13 @@
       margin: auto;
       text-align: center;
       box-shadow: 0 0 40px rgba(0,255,0,0.2);
+      backdrop-filter: blur(4px);
     }
 
     h1 {
       font-size: 2rem;
       margin-bottom: 10px;
+      color: #00ff00;
     }
 
     p {
@@ -60,11 +68,21 @@
       border-radius: 8px;
       color: #000;
       text-decoration: none;
-      transition: 0.3s;
+      transition: background 0.3s;
     }
 
     .button:hover {
       background: #00b0d1;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #555;
+      z-index: 1;
     }
   </style>
 </head>
@@ -74,40 +92,44 @@
   <canvas id="matrix"></canvas>
 
   <!-- Content Box -->
-  <div class="container">
-    <h1>🔐 ISO 27001: Shadow Backup Exposure</h1>
-    <p>A forgotten backup. A careless misconfiguration.<br>Discover what should've stayed hidden.</p>
-    <a href="downloads/private_backup.zip" download class="button">
+  <div class="container" role="main">
+    <h1>🔐 Shadow Backup Exposure</h1>
+    <p>A forgotten backup. A careless misconfiguration.<br>Find the flaw that never should've seen the light.</p>
+    <a href="downloads/private_backup.zip" download class="button" aria-label="Download backup file">
       📦 Download Backup File
     </a>
   </div>
+
+  <footer>
+    ISO 27001 CTF Challenge · Crafted by Sadhana Prajapati
+  </footer>
 
   <script>
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
 
-    // Set full screen
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
 
-    // Custom hacker-style characters
-    const characters = "#$%&@*".split("");
+    const characters = "#$%@*&".split("");
     const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
+    const columns = Math.floor(width / fontSize);
     const drops = Array(columns).fill(1);
 
     function drawMatrix() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillRect(0, 0, width, height);
 
       ctx.fillStyle = "#00ff00";
-      ctx.font = `${fontSize}px monospace`;
+      ctx.font = fontSize + "px monospace";
 
       for (let i = 0; i < drops.length; i++) {
         const char = characters[Math.floor(Math.random() * characters.length)];
         ctx.fillText(char, i * fontSize, drops[i] * fontSize);
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (drops[i] * fontSize > height && Math.random() > 0.975) {
           drops[i] = 0;
         }
         drops[i]++;
@@ -116,10 +138,12 @@
 
     setInterval(drawMatrix, 50);
 
-    // Ensure canvas resizes with the window
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    // Resize canvas on window resize
+    window.addEventListener("resize", () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
     });
   </script>
 
