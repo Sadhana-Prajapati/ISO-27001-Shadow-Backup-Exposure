@@ -20,6 +20,13 @@ exposing the risk of mismanaged file permissions, weak backup policies, and forg
 
 ---
 
+## 🌐 Live Challenge
+
+🚀 **Start Now:** [ISO 27001 Shadow Backup Exposure](https://sadhana-prajapati.github.io/ISO-27001-Shadow-Backup-Exposure/)  
+_No registration needed. Investigate directly in your browser._
+
+---
+
 ## 💡 Your Mission
 
 - 🗂 Infiltrate the exposed backup directory  
