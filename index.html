@@ -185,6 +185,25 @@
       font-weight: bold;
     }
 
+    .success-box {
+      background: rgba(0, 255, 140, 0.1);
+      border: 1px solid #00ff99;
+      color: #00ffb3;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      max-width: 600px;
+      margin-inline: auto;
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     footer {
       text-align: center;
       margin-top: 60px;
@@ -242,6 +261,10 @@
       <button onclick="submitFlag()">Submit Flag</button>
       <div class="result" id="result"></div>
     </div>
+    <div id="successBox" class="success-box">
+      ✅ <strong>Congratulations, auditor!</strong><br />
+      You've successfully breached the backup and uncovered the ISO 27001 violation.
+    </div>
   </div>
 </div>
 
@@ -250,7 +273,7 @@
 </footer>
 
 <script>
-  // Matrix animation
+  // Matrix effect
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
   let width = canvas.width = window.innerWidth;
@@ -298,18 +321,23 @@
     const correctFlag = "ISO27001{L34ky_4ss3ts_Expos3d}";
     const input = document.getElementById("flag").value.trim();
     const result = document.getElementById("result");
+    const box = document.getElementById("successBox");
+
     const match = input.match(/ISO27001\{[^}]+\}/);
     const extracted = match ? match[0] : "";
 
     if (!input) {
       result.textContent = "⚠️ Please enter a flag.";
       result.style.color = "#ffc107";
+      box.style.display = "none";
     } else if (extracted === correctFlag) {
-      result.textContent = "✅ Correct! You've uncovered the breach.";
+      result.textContent = "";
       result.style.color = "#00ffb3";
+      box.style.display = "block";
     } else {
       result.textContent = "❌ Incorrect flag. Try again.";
       result.style.color = "#ff4f4f";
+      box.style.display = "none";
     }
   }
 </script>
