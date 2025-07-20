@@ -9,9 +9,9 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #0a0a0a;
+      background: #000;
       font-family: 'Fira Code', monospace;
-      color: #00ffcc;
+      color: #00ffe0;
       overflow-x: hidden;
     }
 
@@ -27,21 +27,21 @@
     .container {
       position: relative;
       z-index: 1;
-      max-width: 850px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 60px 30px;
       background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
-      box-shadow: 0 0 25px rgba(0, 255, 204, 0.1);
+      border-radius: 14px;
+      box-shadow: 0 0 30px rgba(0, 255, 204, 0.15);
       margin-top: 60px;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       margin-bottom: 20px;
       color: #00ffc8;
+      text-shadow: 0 0 10px #00ffc8;
     }
 
     .section {
@@ -51,8 +51,9 @@
 
     .section h2 {
       color: #50ffd2;
-      font-size: 1.4rem;
-      margin-bottom: 10px;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      text-shadow: 0 0 8px #0ff;
     }
 
     ul {
@@ -197,18 +198,17 @@
 
 <footer>© Sadhana Prajapati · ISO 27001 CTF Challenge</footer>
 
-<!-- 🎉 Modal -->
+<!-- Success Modal -->
 <div class="modal" id="successModal">
   <div class="modal-content">
     ✅ Correct! You've successfully uncovered the breach.<br><br>
-    🎉 Nice work, auditor! Stay sharp.
-    <br><br>
+    🎉 Nice work, auditor! Stay sharp.<br><br>
     <button class="close-btn" onclick="closeModal()">Close</button>
   </div>
 </div>
 
 <script>
-  // Matrix background
+  // Matrix animation
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
   let width = canvas.width = window.innerWidth;
@@ -223,11 +223,9 @@
     ctx.fillRect(0, 0, width, height);
     ctx.fillStyle = "#00ffcc";
     ctx.font = fontSize + "px monospace";
-
     for (let i = 0; i < drops.length; i++) {
       const text = chars[Math.floor(Math.random() * chars.length)];
       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
       if (drops[i] * fontSize > height && Math.random() > 0.975) drops[i] = 0;
       drops[i]++;
     }
@@ -239,7 +237,7 @@
     canvas.height = window.innerHeight;
   });
 
-  // Flag logic
+  // Flag validation
   function submitFlag() {
     const correctFlag = "ISO27001{L34ky_4ss3ts_Expos3d}";
     const input = document.getElementById("flag").value.trim();
