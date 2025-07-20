@@ -35,7 +35,7 @@
       z-index: 0;
       width: 100vw;
       height: 100vh;
-      opacity: 0.09;
+      opacity: 0.2; /* brighter matrix */
       pointer-events: none;
     }
 
@@ -248,28 +248,30 @@
 </footer>
 
 <script>
-  // Matrix background effect
+  // Matrix effect
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
+
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
 
   const chars = "ISO27001LEAKEXPOSEDFLAG";
-  const baseFontSize = 14;
-  const columns = Math.floor(width / baseFontSize);
+  const fontSize = 20; // make larger
+  const columns = Math.floor(width / fontSize);
   const drops = Array(columns).fill(1);
 
   function drawMatrix() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
     ctx.fillRect(0, 0, width, height);
 
+    ctx.fillStyle = "#00ff99";
+    ctx.font = `${fontSize}px monospace`;
+
     for (let i = 0; i < drops.length; i++) {
       const text = chars[Math.floor(Math.random() * chars.length)];
-      ctx.font = `${baseFontSize}px monospace`;
-      ctx.fillStyle = "#00cc88";
-      ctx.fillText(text, i * baseFontSize, drops[i] * baseFontSize);
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-      if (drops[i] * baseFontSize > height && Math.random() > 0.975) {
+      if (drops[i] * fontSize > height && Math.random() > 0.975) {
         drops[i] = 0;
       }
       drops[i]++;
@@ -283,6 +285,7 @@
     height = canvas.height = window.innerHeight;
   });
 
+  // Flag validation
   function submitFlag() {
     const correctFlag = "ISO27001{L34ky_4ss3ts_Expos3d}";
     const input = document.getElementById("flag").value.trim();
