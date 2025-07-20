@@ -227,6 +227,7 @@
 </footer>
 
 <script>
+  // Matrix effect with varied font sizes
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
   let width = canvas.width = window.innerWidth;
@@ -242,23 +243,18 @@
     ctx.fillRect(0, 0, width, height);
 
     for (let i = 0; i < drops.length; i++) {
-      const columnCenter = width / 2;
-      const columnPos = i * baseFontSize;
-      const distanceFromCenter = Math.abs(columnPos - columnCenter);
+      const colX = i * baseFontSize;
+      const center = width / 2;
+      const dist = Math.abs(colX - center);
       let fontSize = baseFontSize;
 
-      if (distanceFromCenter < width / 6) {
-        fontSize = baseFontSize * 1.2;
-      } else if (distanceFromCenter > width / 2.5) {
-        fontSize = baseFontSize * 1.6;
-      } else {
-        fontSize = baseFontSize;
-      }
+      if (dist < width / 6) fontSize = baseFontSize * 1.1;
+      else if (dist > width / 2.5) fontSize = baseFontSize * 1.5;
 
       const text = chars[Math.floor(Math.random() * chars.length)];
       ctx.font = `${fontSize}px monospace`;
       ctx.fillStyle = "#00ffc3";
-      ctx.fillText(text, columnPos, drops[i] * fontSize);
+      ctx.fillText(text, colX, drops[i] * fontSize);
 
       if (drops[i] * fontSize > height && Math.random() > 0.975) {
         drops[i] = 0;
@@ -268,7 +264,7 @@
     }
   }
 
-  setInterval(drawMatrix, 50);
+  setInterval(drawMatrix, 40);
 
   window.addEventListener("resize", () => {
     width = canvas.width = window.innerWidth;
