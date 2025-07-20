@@ -134,6 +134,10 @@
       font-size: 0.85rem;
       color: #555;
     }
+
+    @media screen and (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -221,9 +225,9 @@
     canvas.height = height;
   });
 
-  // Flag validation (for demo use only)
+  // Flag validation
   function submitFlag() {
-    const correctFlag = "CTF{iso27001_backup_exposed}"; // Replace with your real flag
+    const correctFlag = "ISO27001{L34ky_4ss3ts_Expos3d}";
     const input = document.getElementById("flag").value.trim();
     const result = document.getElementById("result");
 
