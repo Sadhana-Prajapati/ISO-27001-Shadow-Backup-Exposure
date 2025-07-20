@@ -54,6 +54,17 @@
       margin-bottom: 30px;
     }
 
+    .badge {
+      display: inline-block;
+      font-size: 0.9rem;
+      background: #111;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      margin-bottom: 20px;
+    }
+
     .section {
       background: rgba(255, 255, 255, 0.04);
       padding: 30px;
@@ -95,7 +106,7 @@
       text-decoration: none;
       box-shadow: 0 0 15px rgba(0,255,204,0.3);
       transition: all 0.3s ease;
-      max-width: 240px;
+      max-width: 260px;
       width: 100%;
       text-align: center;
     }
@@ -116,6 +127,16 @@
     .flag-section h2 {
       color: var(--accent);
       margin-bottom: 16px;
+    }
+
+    .terminal-label {
+      font-size: 0.95rem;
+      background: #111;
+      color: #0ff;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      border-left: 4px solid var(--primary);
+      display: inline-block;
     }
 
     .flag-input {
@@ -192,6 +213,7 @@
 
 <div class="container">
   <h1>🛡️ ISO 27001 CTF: Shadow Backup Exposure</h1>
+  <div class="badge">🧩 Level 1 – Backup Breach</div>
 
   <div class="section">
     <p>Welcome to a world where audits failed, and oversight ruled. An internal team once stored critical files in a hidden backup directory — no encryption, no access control, no logs... just carelessness.</p>
@@ -214,6 +236,7 @@
 
   <div class="flag-section">
     <h2>🏁 Submit Your Flag</h2>
+    <div class="terminal-label">Analyst Terminal — Enter Flag Below</div>
     <div class="flag-input">
       <input type="text" id="flag" placeholder='e.g. ISO27001{...}' />
       <button onclick="submitFlag()">Submit Flag</button>
@@ -227,7 +250,7 @@
 </footer>
 
 <script>
-  // Matrix effect with varied font sizes
+  // Matrix animation
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
   let width = canvas.width = window.innerWidth;
