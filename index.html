@@ -172,7 +172,7 @@
   <div class="flag-section">
     <h2>🏁 Submit Your Flag</h2>
     <div class="flag-input">
-      <input type="text" id="flag" placeholder="Enter your flag here" />
+      <input type="text" id="flag" placeholder='Paste: temp_flag_897": "ISO27001{...}"' />
       <button onclick="submitFlag()">Submit Flag</button>
       <div class="result" id="result"></div>
     </div>
@@ -225,16 +225,21 @@
     canvas.height = height;
   });
 
-  // Flag validation
+  // Flag validation (handles embedded or quoted variants)
   function submitFlag() {
     const correctFlag = "ISO27001{L34ky_4ss3ts_Expos3d}";
     const input = document.getElementById("flag").value.trim();
+
+    // Extract the flag pattern from any input
+    const flagMatch = input.match(/ISO27001\{[^}]+\}/);
+    const extractedFlag = flagMatch ? flagMatch[0].replace(/["']/g, '') : "";
+
     const result = document.getElementById("result");
 
     if (!input) {
       result.textContent = "⚠️ Please enter a flag.";
       result.style.color = "#ffcc00";
-    } else if (input === correctFlag) {
+    } else if (extractedFlag === correctFlag) {
       result.textContent = "✅ Correct! You’ve uncovered the breach.";
       result.style.color = "#00ff88";
     } else {
